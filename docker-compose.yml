@@ -1,0 +1,24 @@
+version: '3'
+services:
+  postgres:
+    image: postgres
+    volumes:
+      - /var/lib/postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=topsecure
+      - POSTGRES_DBNAME=api
+    ports:
+      - "5432:5432"
+  node:
+    image: cryptocompare.azurecr.io/node:1.0.0
+    depends_on:
+      - postgres
+    volumes:
+      - /usr/src/app
+    working_dir: /home/loeken/Projects/kubernetes_nodejs_postgresql_demo/server.js
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=topsecure
+      - POSTGRES_DBNAME=api
+      - POSTGRES_HOST=localhost

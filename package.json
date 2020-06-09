@@ -1,0 +1,23 @@
+{
+  "name": "kubernetes_nodejs_postgresql_demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/loeken/kubernetes_nodejs_postgresql_demo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/loeken/kubernetes_nodejs_postgresql_demo/issues"
+  },
+  "homepage": "https://github.com/loeken/kubernetes_nodejs_postgresql_demo#readme",
+  "dependencies": {
+    "pg": "^8.2.1"
+  }
+}
