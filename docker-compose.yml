@@ -1,24 +1,28 @@
 version: '3'
 services:
-  postgres:
+  postgresql:
     image: postgres
+    container_name: postgres
     volumes:
-      - /var/lib/postgres
+      - /var/lib/postgresql/
+      - $PWD/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=topsecure
       - POSTGRES_DBNAME=api
     ports:
       - "5432:5432"
-  node:
-    image: cryptocompare.azurecr.io/node:1.0.0
+  nodeapp:
+    image: loeken/kubernetes_nodejs_postgresql_demo:latest
+    container_name: nodeapp
     depends_on:
-      - postgres
-    volumes:
-      - /usr/src/app
-    working_dir: /home/loeken/Projects/kubernetes_nodejs_postgresql_demo/server.js
+      - postgresql
+    #volumes:
+    #  - $PWD:/usr/src/app
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=topsecure
       - POSTGRES_DBNAME=api
-      - POSTGRES_HOST=localhost
+      - POSTGRES_HOST=postgresql
+    ports:
+      - "1337:1337"
